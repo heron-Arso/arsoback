@@ -1,0 +1,100 @@
+spring:
+  profiles:
+    active: test
+
+  application:
+    name: koalaback
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MySQL
+    username: sa
+    password:
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+        default_batch_fetch_size: 100
+    open-in-view: false
+
+  flyway:
+    enabled: false
+
+  data:
+    redis:
+      timeout: 3000ms
+
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 100MB
+
+  mail:
+    host: localhost
+    port: 1025
+    username: test
+    password: test
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: test-client-id
+            clientSecret: test-client-secret
+            redirectUri: http://localhost:8080/oauth2/callback
+        provider:
+          google:
+            authorizationUri: https://accounts.google.com/o/oauth2/auth
+            tokenUri: https://accounts.google.com/o/oauth2/token
+            userInfoUri: https://www.googleapis.com/oauth2/v1/userinfo
+            userNameAttribute: sub
+
+jwt:
+  secret: test-secret-key-for-testing-purposes-only-do-not-use-in-production-1234567890
+  access-token-expiry-ms: 3600000
+  refresh-token-expiry-ms: 604800000
+
+cloud:
+  aws:
+    credentials:
+      access-key: test-access-key
+      secret-key: test-secret-key
+    region:
+      static: us-east-1
+    s3:
+      bucket: test-bucket
+
+koala:
+  cdn-base-url: http://localhost:8080
+
+oauth2:
+  redirect-uri: http://localhost:3000/oauth2/callback
+
+toss:
+  secret-key: test_sk_placeholder
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+  endpoint:
+    health:
+      show-details: always
