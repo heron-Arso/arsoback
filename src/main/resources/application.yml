@@ -19,7 +19,6 @@ spring:
       ddl-auto: validate
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
         default_batch_fetch_size: 100
     open-in-view: false
@@ -39,35 +38,6 @@ spring:
       max-file-size: 20MB
       max-request-size: 100MB
 
-jwt:
-  secret: ${JWT_SECRET}
-  access-token-expiry-ms: 1800000
-  refresh-token-expiry-ms: 604800000
-
-cloud:
-  aws:
-    s3:
-      bucket: ${S3_BUCKET}
-    region:
-      static: ap-northeast-2
-    credentials:
-      access-key: ${AWS_ACCESS_KEY}
-      secret-key: ${AWS_SECRET_KEY}
-
-koala:
-  cdn-base-url: ${CDN_BASE_URL}
-
-toss:
-  secret-key: ${TOSS_SECRET_KEY}
-
-#springdoc:
- # swagger-ui:
-  #  path: /swagger-ui.html
-   # tags-sorter: alpha
-    #operations-sorter: alpha
-#  api-docs:
-#    path: /api-docs
-
 management:
   endpoints:
     web:
@@ -76,9 +46,3 @@ management:
   endpoint:
     health:
       show-details: always
-
-logging:
-  level:
-    com.koala.koalaback: DEBUG
-    org.hibernate.SQL: DEBUG
-    org.hibernate.orm.jdbc.bind: TRACE
