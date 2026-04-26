@@ -86,6 +86,7 @@ koala:
 
 toss:
   secret-key: ${TOSS_SECRET_KEY}
+  webhook-secret: ${TOSS_WEBHOOK_SECRET}
 
 logging:
   level:
